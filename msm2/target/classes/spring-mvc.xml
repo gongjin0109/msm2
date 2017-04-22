@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+      ">
+
+    <!--
+        扫描base-pack下面或者子包下面的java文件，
+        如果扫描到有@Component @Controller@Service等这些注解的类，
+        则把这些类注册为bean
+    -->
+    <context:component-scan base-package="com.msm"/>
+    <!-- 启动对@aspectJ注解的支持 -->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+    <mvc:annotation-driven>
+        <!-- 消息转换器 -->
+        <mvc:message-converters register-defaults="true">
+            <ref bean="stringHttpMessageConverter" />
+            <ref bean="jsonHttpMessageConverter" />
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <bean id="stringHttpMessageConverter"
+          class="org.springframework.http.converter.StringHttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>text/plain;charset=UTF-8</value>
+                <value>text/html;charset=UTF-8</value>
+                <value>application/json;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="jsonHttpMessageConverter"
+          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+
+    <bean id="hashMap" class="java.util.HashMap"/>
+
+    <!-- 当在web.xml 中   DispatcherServlet使用 <url-pattern>/</url-pattern> 映射时，能映射静态资源 -->
+    <mvc:default-servlet-handler/>
+
+    <!--静态资源映射-->
+    <!--本项目把静态资源放在了WEB-INF的statics目录下，资源映射如下-->
+    <mvc:resources mapping="/statics/**" location="/WEB-INF/statics/"/>
+
+
+    <!-- 对模型视图名称的解析，即在模型视图名称添加前后缀(如果最后一个还是表示文件夹,则最后的斜杠不要漏了) 使用JSP-->
+    <!-- 默认的视图解析器 在上边的解析错误时使用 (默认使用html)- -->
+    <bean id="defaultViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/views/"/><!--设置JSP文件的目录位置-->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- springmvc文件上传需要配置的节点-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="20971500"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="resolveLazily" value="true"/>
+    </bean>
+</beans>

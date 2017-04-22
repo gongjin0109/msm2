@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+  version="2.0">
+    
+  <description>JSTL 1.1 functions library</description>
+  <display-name>JSTL functions</display-name>
+  <tlib-version>1.1</tlib-version>
+  <short-name>dn</short-name>
+  <uri>http://java.sun.com/jsp/jstl/functions</uri>
+  
+    <function>
+    <name>dateFormat</name>
+    <function-class>com.iheyday.tag.DateTag</function-class>
+    <function-signature>java.lang.String dateFormat(java.lang.String)</function-signature>
+    <example>
+      P.O. Box: ${dn:dateFormat(zip)}
+    </example>
+  </function>
+ <function>
+    <name>checkDate</name>
+    <function-class>com.iheyday.tag.DateTag</function-class>
+    <function-signature>java.lang.String checkDate(java.lang.String)</function-signature>
+    <example>
+      P.O. Box: ${checkDate(zip)}
+    </example>
+  </function>
+   <function>
+    <name>htmlspecialchars</name>
+    <function-class>com.iheyday.tag.DateTag</function-class>
+    <function-signature>java.lang.String htmlspecialchars(java.lang.String)</function-signature>
+    <example>
+      P.O. Box: ${htmlspecialchars(zip)}
+    </example>
+  </function>
+   <function>
+    <name>getMinIco</name>
+    <function-class>com.iheyday.tag.DateTag</function-class>
+    <function-signature>java.lang.String getMinIco(java.util.List)</function-signature>
+    <example>
+      P.O. Box: ${getMinIco(zip)}
+    </example>
+  </function>  
+   <function>
+    <name>checkIsUpload</name>
+    <function-class>com.iheyday.tag.DateTag</function-class>
+    <function-signature>boolean checkIsUpload(java.lang.String,java.lang.String)</function-signature>
+    <example>
+      P.O. Box: ${checkIsUpload(zip,zip)}
+    </example>
+  </function>    
+   <function>
+    <name>checkIsSign</name>
+    <function-class>com.iheyday.tag.DateTag</function-class>
+    <function-signature>int checkIsSign(java.lang.String,java.lang.String)</function-signature>
+    <example>
+      P.O. Box: ${checkIsSign(string,string)}
+    </example>
+  </function> 
+   <function>
+    <name>checkUserIsPubSuccess</name>
+    <function-class>com.iheyday.tag.DateTag</function-class>
+    <function-signature>int checkUserIsPubSuccess(java.lang.String)</function-signature>
+    <example>
+      P.O. Box: ${checkIsUpload(string)}
+    </example>
+  </function> 
+   <function>
+    <name>checkUserIsValidate</name>
+    <function-class>com.iheyday.tag.DateTag</function-class>
+    <function-signature>int checkUserIsValidate(java.lang.String)</function-signature>
+    <example>
+      P.O. Box: ${checkUserIsValidate(string)}
+    </example>
+  </function> 
+    <function>
+    <name>isBidByManager</name>
+    <function-class>com.iheyday.tag.DateTag</function-class>
+    <function-signature>boolean isBidByManager(java.lang.String,java.lang.String)</function-signature>
+    <example>
+      P.O. Box: ${isBidByManager(String,String)}
+    </example>
+  </function>  
+   <function>
+    <name>isApplyTour</name>
+    <function-class>com.iheyday.tag.DateTag</function-class>
+    <function-signature>int isApplyTour(java.lang.Integer,java.lang.String)</function-signature>
+    <example>
+      P.O. Box: ${isApplyTour(java.lang.Integer,String)}
+    </example>
+  </function>  
+  
+  <function>
+    <name>getMoneyProgressImage</name>
+    <function-class>com.iheyday.tag.DateTag</function-class>
+    <function-signature>String getMoneyProgressImage(java.lang.Double)</function-signature>
+    <example>
+      P.O. Box: ${getMoneyProgressImage(java.lang.Double)}
+    </example>
+  </function>  
+</taglib>

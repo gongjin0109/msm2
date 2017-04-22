@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.msm.dao.user.UserDao">
+    <resultMap id="BaseResultMap" type="User">
+        <id column="secure_password" property="securePassword" jdbcType="VARCHAR" />
+        <result column="login_id" property="loginId" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId"  jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName"  jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="mobile_phone" property="mobilePhone" jdbcType="VARCHAR"/>
+        <result column="user_password" property="userPassword" jdbcType="VARCHAR"/>
+        <result column="role_mark" property="roleMark" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime"/>
+        <result column="user_desc" property="userDesc" jdbcType="VARCHAR"/>
+        <result column="salt" property="salt" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="is_check_phone" property="isCheckPhone" jdbcType="INTEGER"/>
+        <result column="is_check_email" property="isCheckEmail" jdbcType="INTEGER"/>
+        <result column="validation_info" property="validationInfo" jdbcType="VARCHAR"/>
+        <result column="pwd_protect_question" property="pwdProtectQuestion" jdbcType="VARCHAR"/>
+        <result column="pwd_protect_answer" property="pwdProtectAnswer" jdbcType="VARCHAR"/>
+        <result column="third_party_account" property="thirdPartyAccount" jdbcType="VARCHAR"/>
+        <result column="is_deleted" property="isDeleted" />
+        <result column="no_activate_email" property="noActivateEmail" jdbcType="VARCHAR"/>
+        <result column="wechat_id" property="wechatId" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        secure_password , login_id , user_id ,user_name ,email ,mobile_phone ,user_password ,role_mark ,create_time ,user_desc ,salt ,update_time,is_check_phone ,
+        is_check_email ,validation_info , pwd_protect_question, pwd_protect_answer, third_party_account,is_deleted ,no_activate_email ,wechat_id
+    </sql>
+    <!--查询所有用户信息-->
+    <select id="selectAllUserInfo" resultMap="BaseResultMap">
+          SELECT
+          <include refid="Base_Column_List"/>
+          FROM t_user
+          WHERE is_deleted = false
+    </select>
+</mapper>
